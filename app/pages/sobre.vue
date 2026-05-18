@@ -181,11 +181,13 @@ const team = [
 .mb-12 { margin-bottom: 3rem; }
 
 .sobre__values-grid {
-  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+  display: grid; 
+  grid-template-columns: repeat(2, minmax(0, 1fr)); 
+  gap: 1.25rem;
   grid-auto-rows: 1fr;
 }
 @media (min-width: 1024px) {
-  .sobre__values-grid { grid-template-columns: repeat(3, 1fr); }
+  .sobre__values-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
 }
 
 .sobre__value-card { 
@@ -193,6 +195,12 @@ const team = [
   height: 100%;
   display: flex;
   flex-direction: column;
+  padding: 1.25rem 1rem;
+}
+@media (min-width: 1024px) {
+  .sobre__value-card {
+    padding: 2rem;
+  }
 }
 .sobre__value-icon-wrapper { margin-bottom: 1rem; display: flex; justify-content: center; }
 .sobre__value-icon { color: var(--cyan-400); }
