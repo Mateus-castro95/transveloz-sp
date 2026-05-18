@@ -48,7 +48,9 @@
         </div>
         <div class="sobre__values-grid">
           <div v-for="v in values" :key="v.title" class="card sobre__value-card">
-            <div class="sobre__value-emoji">{{ v.emoji }}</div>
+            <div class="sobre__value-icon-wrapper">
+              <component :is="v.icon" :size="36" class="sobre__value-icon" />
+            </div>
             <h3 class="sobre__value-title">{{ v.title }}</h3>
             <p class="sobre__value-desc">{{ v.desc }}</p>
           </div>
@@ -78,7 +80,7 @@
 </template>
 
 <script setup lang="ts">
-import { Users as IconUsers } from 'lucide-vue-next'
+import { Users as IconUsers, Zap, ShieldCheck, Lightbulb, Handshake, Leaf, Trophy } from 'lucide-vue-next'
 import CtaSection from '~/components/sections/CtaSection.vue'
 
 definePageMeta({ layout: 'default' })
@@ -97,12 +99,12 @@ const milestones = [
 ]
 
 const values = [
-  { emoji: '⚡', title: 'Velocidade', desc: 'Cada minuto importa. Processos ágeis que garantem prazos cumpridos.' },
-  { emoji: '🔒', title: 'Confiança', desc: 'Transparência total em cada etapa do transporte, sem surpresas.' },
-  { emoji: '💡', title: 'Inovação', desc: 'Tecnologia de ponta para rastreamento, gestão e comunicação.' },
-  { emoji: '🤝', title: 'Parceria', desc: 'Não somos apenas fornecedores — somos parceiros do seu crescimento.' },
-  { emoji: '🌿', title: 'Sustentabilidade', desc: 'Frota com veículos Euro 6 e programa de compensação de carbono.' },
-  { emoji: '🏆', title: 'Excelência', desc: 'ISO 9001:2015 e busca contínua pela melhoria dos processos.' },
+  { icon: Zap, title: 'Velocidade', desc: 'Cada minuto importa. Processos ágeis que garantem prazos cumpridos.' },
+  { icon: ShieldCheck, title: 'Confiança', desc: 'Transparência total em cada etapa do transporte, sem surpresas.' },
+  { icon: Lightbulb, title: 'Inovação', desc: 'Tecnologia de ponta para rastreamento, gestão e comunicação.' },
+  { icon: Handshake, title: 'Parceria', desc: 'Não somos apenas fornecedores — somos parceiros do seu crescimento.' },
+  { icon: Leaf, title: 'Sustentabilidade', desc: 'Frota com veículos Euro 6 e programa de compensação de carbono.' },
+  { icon: Trophy, title: 'Excelência', desc: 'ISO 9001:2015 e busca contínua pela melhoria dos processos.' },
 ]
 
 const team = [
@@ -180,13 +182,20 @@ const team = [
 
 .sobre__values-grid {
   display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.25rem;
+  grid-auto-rows: 1fr;
 }
 @media (min-width: 1024px) {
   .sobre__values-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
-.sobre__value-card { text-align: center; }
-.sobre__value-emoji { font-size: 2rem; margin-bottom: 0.75rem; }
+.sobre__value-card { 
+  text-align: center;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.sobre__value-icon-wrapper { margin-bottom: 1rem; display: flex; justify-content: center; }
+.sobre__value-icon { color: var(--cyan-400); }
 .sobre__value-title { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: white; margin-bottom: 0.5rem; }
 .sobre__value-desc { font-size: 0.875rem; color: rgba(255,255,255,0.55); line-height: 1.6; }
 
